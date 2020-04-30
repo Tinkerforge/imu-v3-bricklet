@@ -34,7 +34,7 @@
   )
 
   (setup
-    (last_trace_width 0.2)
+    (last_trace_width 0.15)
     (user_trace_width 0.15)
     (user_trace_width 0.2)
     (user_trace_width 0.3)
@@ -223,12 +223,12 @@
       (xy -1.62681 -1.239762) (xy -1.433286 -1.239762) (xy -1.433286 1.42119)) (layer F.SilkS) (width 0.01))
   )
 
-  (module kicad-libraries:WEEE_7mm (layer B.Cu) (tedit 5922FFAE) (tstamp 5EAAB702)
-    (at 163.8 62.5 180)
-    (fp_text reference VAL (at 0 0) (layer B.SilkS) hide
+  (module kicad-libraries:WEEE_7mm (layer B.Cu) (tedit 5922FFAE) (tstamp 5EAAC998)
+    (at 170 56.3 90)
+    (fp_text reference VAL (at 0 0 90) (layer B.SilkS) hide
       (effects (font (size 0.2 0.2) (thickness 0.05)) (justify mirror))
     )
-    (fp_text value WEEE_7mm (at 0.75 0) (layer B.SilkS) hide
+    (fp_text value WEEE_7mm (at 0.75 0 90) (layer B.SilkS) hide
       (effects (font (size 0.2 0.2) (thickness 0.05)) (justify mirror))
     )
     (fp_poly (pts (xy 2.482863 3.409859) (xy 2.480804 3.376179) (xy 2.471206 3.341837) (xy 2.44964 3.301407)
@@ -348,12 +348,12 @@
       (xy 2.032 -3.527778)) (layer B.SilkS) (width 0.1))
   )
 
-  (module kicad-libraries:Logo_CoMCU (layer B.Cu) (tedit 0) (tstamp 5EAAB627)
-    (at 176.7 62.6 180)
-    (fp_text reference G*** (at 0 0) (layer B.SilkS) hide
+  (module kicad-libraries:Logo_CoMCU (layer B.Cu) (tedit 0) (tstamp 5EAAC9B6)
+    (at 169.9 69.2 90)
+    (fp_text reference G*** (at 0 0 90) (layer B.SilkS) hide
       (effects (font (size 1.524 1.524) (thickness 0.3)) (justify mirror))
     )
-    (fp_text value LOGO (at 0.75 0) (layer B.SilkS) hide
+    (fp_text value LOGO (at 0.75 0 90) (layer B.SilkS) hide
       (effects (font (size 1.524 1.524) (thickness 0.3)) (justify mirror))
     )
     (fp_poly (pts (xy 1.302426 2.714986) (xy 1.385193 2.695173) (xy 1.448716 2.651032) (xy 1.488807 2.593596)
@@ -559,11 +559,11 @@
   )
 
   (module kicad-libraries:CE_5mm (layer B.Cu) (tedit 5922FFD4) (tstamp 5EAAB56B)
-    (at 170 62.5 180)
-    (fp_text reference VAL (at 0 0) (layer B.SilkS) hide
+    (at 170 62.5 90)
+    (fp_text reference VAL (at 0 0 90) (layer B.SilkS) hide
       (effects (font (size 0.2 0.2) (thickness 0.05)) (justify mirror))
     )
-    (fp_text value CE_5mm (at 0 0) (layer B.SilkS) hide
+    (fp_text value CE_5mm (at 0 0 90) (layer B.SilkS) hide
       (effects (font (size 0.2 0.2) (thickness 0.05)) (justify mirror))
     )
     (fp_poly (pts (xy 2.3114 -1.67132) (xy 2.30124 -1.67132) (xy 2.28854 -1.67386) (xy 2.26822 -1.6764)
@@ -1478,7 +1478,7 @@
     )
   )
 
-  (gr_poly (pts (xy 172.4 64.25) (xy 167.6 64.2) (xy 167.6 60.8) (xy 172.4 60.8)) (layer F.Mask) (width 0.1))
+  (gr_poly (pts (xy 172.4 64.25) (xy 167.6 64.2) (xy 167.6 60.8) (xy 172.4 60.8)) (layer F.Mask) (width 0.1) (tstamp 5EAAC991))
   (gr_text Z (at 177.7 60.2 90) (layer F.SilkS)
     (effects (font (size 0.7 0.7) (thickness 0.15)))
   )
@@ -1752,7 +1752,7 @@
   (segment (start 168.25 60.2) (end 168.05 60) (width 0.2) (layer F.Cu) (net 32))
   (segment (start 165.8 61.4) (end 165.175 61.4) (width 0.2) (layer F.Cu) (net 32))
 
-  (zone (net 1) (net_name GND) (layer B.Cu) (tstamp 5EAAC7EE) (hatch edge 0.508)
+  (zone (net 1) (net_name GND) (layer B.Cu) (tstamp 5EAAC8BC) (hatch edge 0.508)
     (connect_pads yes (clearance 0.15))
     (min_thickness 0.254)
     (fill yes (arc_segments 32) (thermal_gap 0.508) (thermal_bridge_width 0.508))
@@ -1812,8 +1812,8 @@
       )
     )
   )
-  (zone (net 1) (net_name GND) (layer F.Cu) (tstamp 5EAAC7EB) (hatch edge 0.508)
-    (connect_pads yes (clearance 0.508))
+  (zone (net 1) (net_name GND) (layer F.Cu) (tstamp 5EAAC8B9) (hatch edge 0.508)
+    (connect_pads yes (clearance 0.15))
     (min_thickness 0.254)
     (fill yes (arc_segments 32) (thermal_gap 0.508) (thermal_bridge_width 0.508))
     (polygon
@@ -1823,11 +1823,11 @@
     )
     (filled_polygon
       (pts
-        (xy 175.773 58.873) (xy 174.812397 58.873) (xy 174.327 58.387603) (xy 174.327 57.427) (xy 175.773 57.427)
+        (xy 175.773 58.873) (xy 174.327 58.873) (xy 174.327 57.427) (xy 175.773 57.427)
       )
     )
   )
-  (zone (net 1) (net_name GND) (layer F.Cu) (tstamp 5EAAC7E8) (hatch edge 0.508)
+  (zone (net 1) (net_name GND) (layer F.Cu) (tstamp 5EAAC8B6) (hatch edge 0.508)
     (connect_pads yes (clearance 0.15))
     (min_thickness 0.254)
     (fill yes (arc_segments 32) (thermal_gap 0.508) (thermal_bridge_width 0.508))
@@ -1842,7 +1842,7 @@
       )
     )
   )
-  (zone (net 1) (net_name GND) (layer F.Cu) (tstamp 5EAAC7E5) (hatch edge 0.508)
+  (zone (net 1) (net_name GND) (layer F.Cu) (tstamp 5EAAC8B3) (hatch edge 0.508)
     (connect_pads yes (clearance 0.508))
     (min_thickness 0.254)
     (fill yes (arc_segments 32) (thermal_gap 0.508) (thermal_bridge_width 0.508))
@@ -1859,7 +1859,7 @@
       )
     )
   )
-  (zone (net 1) (net_name GND) (layer F.Cu) (tstamp 5EAAC7E2) (hatch edge 0.508)
+  (zone (net 1) (net_name GND) (layer F.Cu) (tstamp 5EAAC8B0) (hatch edge 0.508)
     (connect_pads yes (clearance 0.15))
     (min_thickness 0.254)
     (fill yes (arc_segments 32) (thermal_gap 0.508) (thermal_bridge_width 0.508))
@@ -1874,7 +1874,7 @@
       )
     )
   )
-  (zone (net 1) (net_name GND) (layer F.Cu) (tstamp 5EAAC7DF) (hatch edge 0.508)
+  (zone (net 1) (net_name GND) (layer F.Cu) (tstamp 5EAAC8AD) (hatch edge 0.508)
     (connect_pads yes (clearance 0.15))
     (min_thickness 0.254)
     (fill yes (arc_segments 32) (thermal_gap 0.508) (thermal_bridge_width 0.508))
