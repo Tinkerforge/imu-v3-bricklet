@@ -24,6 +24,8 @@
 #include "bricklib2/utility/communication_callback.h"
 #include "bricklib2/protocols/tfp/tfp.h"
 
+#include "bno055.h"
+
 BootloaderHandleMessageResponse handle_message(const void *message, void *response) {
 	switch(tfp_get_fid_from_message(message)) {
 		case FID_GET_ACCELERATION: return get_acceleration(message, response);
@@ -95,12 +97,16 @@ BootloaderHandleMessageResponse get_quaternion(const GetQuaternion *data, GetQua
 
 BootloaderHandleMessageResponse get_all_data(const GetAllData *data, GetAllData_Response *response) {
 	response->header.length = sizeof(GetAllData_Response);
+	memcpy(response->acceleration, &bno055.sensor_data_ready, sizeof(SensorData));
 
 	return HANDLE_MESSAGE_RESPONSE_NEW_MESSAGE;
 }
 
 BootloaderHandleMessageResponse save_calibration(const SaveCalibration *data, SaveCalibration_Response *response) {
-	response->header.length = sizeof(SaveCalibration_Response);
+	bno055.new_calibration     = bno055.sensor_data.calibration_status == 0xFF;
+
+	response->header.length    = sizeof(SaveCalibration_Response);
+	response->calibration_done = bno055.new_calibration;
 
 	return HANDLE_MESSAGE_RESPONSE_NEW_MESSAGE;
 }

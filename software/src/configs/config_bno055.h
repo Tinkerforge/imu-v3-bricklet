@@ -22,4 +22,33 @@
 #ifndef CONFIG_BNO055_H
 #define CONFIG_BNO055_H
 
+#include "xmc_gpio.h"
+#include "xmc_i2c.h"
+
+#define BNO055_I2C_BAUDRATE         400000
+
+#define BNO055_I2C_ADDRESS          0b0101001
+#define BNO055_I2C                  XMC_I2C0_CH1
+
+#define BNO055_SCL_PORT             XMC_GPIO_PORT1
+#define BNO055_SCL_PIN              3
+#define BNO055_SCL_PIN_MODE         XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT6
+#define BNO055_SCL_INPUT            XMC_USIC_CH_INPUT_DX1
+#define BNO055_SCL_SOURCE           0
+#define BNO055_SCL_FIFO_SIZE        XMC_USIC_CH_FIFO_SIZE_16WORDS
+#define BNO055_SCL_FIFO_POINTER     32
+
+#define BNO055_SDA_PORT             XMC_GPIO_PORT1
+#define BNO055_SDA_PIN              2
+#define BNO055_SDA_PIN_MODE         XMC_GPIO_MODE_OUTPUT_OPEN_DRAIN_ALT7
+#define BNO055_SDA_INPUT            XMC_USIC_CH_INPUT_DX0
+#define BNO055_SDA_SOURCE           1
+#define BNO055_SDA_FIFO_SIZE        XMC_USIC_CH_FIFO_SIZE_16WORDS
+#define BNO055_SDA_FIFO_POINTER     48
+
+#define BNO055_ADDRESS_SELECTION    P0_7
+#define BNO055_INT                  P0_8
+#define BNO055_NRESET               P0_9
+#define BNO055_NBOOT                P0_12
+
 #endif

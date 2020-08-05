@@ -33,6 +33,9 @@
 #define FIRMWARE_VERSION_MINOR 0
 #define FIRMWARE_VERSION_REVISION 0
 
+#define I2C_FIFO_COOP_ENABLE
+#define I2C_FIFO_TIMEOUT 2500 // Use 2500ms I2C timeout because of long clock stretching of BNO055
+
 #include "config_custom_bootloader.h"
 
 #endif
