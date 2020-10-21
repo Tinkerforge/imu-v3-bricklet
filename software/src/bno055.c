@@ -70,7 +70,7 @@ void bno055_task_read_register(const uint8_t reg, uint8_t *data, const uint8_t l
 }
 
 // By trial and error we found out that the BNO055 sometimes does not
-// change the fusion mode. There is no error (NACK during I2C communication or similar).
+// change the fusion mode. There is no error (NAK during I2C communication or similar).
 // Because of this we check everytime after we write a register and just try again if it does't match.
 void bno055_task_write_register_with_check(const uint8_t reg, const uint8_t *data, const uint8_t length, const uint32_t sleep) {
 	while(true) {

@@ -31,6 +31,17 @@
 #define BNO055_CALIBRATION_MAGIC   0xDEADBEEF
 #define BNO055_CALIBRATION_LENGTH  (sizeof(BNO055Calibration) - sizeof(uint32_t))
 
+#define BNO055_CALLBACK_NUM                  9
+#define BNO055_CALLBACK_ACCELERATION         0
+#define BNO055_CALLBACK_MAGNETIC_FIELD       1
+#define BNO055_CALLBACK_ANGULAR_VELOCITY     2
+#define BNO055_CALLBACK_TEMPERATURE          3
+#define BNO055_CALLBACK_ORIENTATION          4
+#define BNO055_CALLBACK_LINEAR_ACCELERATION  5
+#define BNO055_CALLBACK_GRAVITY_VECTOR       6
+#define BNO055_CALLBACK_QUATERNION           7
+#define BNO055_CALLBACK_ALL_DATA             8
+
 typedef struct {
 	int16_t acc_offset[3];
 	int16_t mag_offset[3];
@@ -89,6 +100,9 @@ typedef struct {
 	SensorData sensor_data_ready;
 
 	I2CFifo i2c_fifo;
+
+	uint32_t cb_period[BNO055_CALLBACK_NUM];
+	bool cb_vhtc[BNO055_CALLBACK_NUM];
 } BNO055;
 
 extern BNO055 bno055;

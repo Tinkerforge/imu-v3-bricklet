@@ -111,7 +111,34 @@ void communication_init(void);
 #define FID_GET_SENSOR_CONFIGURATION 12
 #define FID_SET_SENSOR_FUSION_MODE 13
 #define FID_GET_SENSOR_FUSION_MODE 14
+#define FID_SET_ACCELERATION_CALLBACK_CONFIGURATION 15
+#define FID_GET_ACCELERATION_CALLBACK_CONFIGURATION 16
+#define FID_SET_MAGNETIC_FIELD_CALLBACK_CONFIGURATION 17
+#define FID_GET_MAGNETIC_FIELD_CALLBACK_CONFIGURATION 18
+#define FID_SET_ANGULAR_VELOCITY_CALLBACK_CONFIGURATION 19
+#define FID_GET_ANGULAR_VELOCITY_CALLBACK_CONFIGURATION 20
+#define FID_SET_TEMPERATURE_CALLBACK_CONFIGURATION 21
+#define FID_GET_TEMPERATURE_CALLBACK_CONFIGURATION 22
+#define FID_SET_ORIENTATION_CALLBACK_CONFIGURATION 23
+#define FID_GET_ORIENTATION_CALLBACK_CONFIGURATION 24
+#define FID_SET_LINEAR_ACCELERATION_CALLBACK_CONFIGURATION 25
+#define FID_GET_LINEAR_ACCELERATION_CALLBACK_CONFIGURATION 26
+#define FID_SET_GRAVITY_VECTOR_CALLBACK_CONFIGURATION 27
+#define FID_GET_GRAVITY_VECTOR_CALLBACK_CONFIGURATION 28
+#define FID_SET_QUATERNION_CALLBACK_CONFIGURATION 29
+#define FID_GET_QUATERNION_CALLBACK_CONFIGURATION 30
+#define FID_SET_ALL_DATA_CALLBACK_CONFIGURATION 31
+#define FID_GET_ALL_DATA_CALLBACK_CONFIGURATION 32
 
+#define FID_CALLBACK_ACCELERATION 33
+#define FID_CALLBACK_MAGNETIC_FIELD 34
+#define FID_CALLBACK_ANGULAR_VELOCITY 35
+#define FID_CALLBACK_TEMPERATURE 36
+#define FID_CALLBACK_LINEAR_ACCELERATION 37
+#define FID_CALLBACK_GRAVITY_VECTOR 38
+#define FID_CALLBACK_ORIENTATION 39
+#define FID_CALLBACK_QUATERNION 40
+#define FID_CALLBACK_ALL_DATA 41
 
 typedef struct {
 	TFPMessageHeader header;
@@ -262,6 +289,218 @@ typedef struct {
 	uint8_t mode;
 } __attribute__((__packed__)) GetSensorFusionMode_Response;
 
+typedef struct {
+	TFPMessageHeader header;
+	uint32_t period;
+	bool value_has_to_change;
+} __attribute__((__packed__)) SetAccelerationCallbackConfiguration;
+
+typedef struct {
+	TFPMessageHeader header;
+} __attribute__((__packed__)) GetAccelerationCallbackConfiguration;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint32_t period;
+	bool value_has_to_change;
+} __attribute__((__packed__)) GetAccelerationCallbackConfiguration_Response;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint32_t period;
+	bool value_has_to_change;
+} __attribute__((__packed__)) SetMagneticFieldCallbackConfiguration;
+
+typedef struct {
+	TFPMessageHeader header;
+} __attribute__((__packed__)) GetMagneticFieldCallbackConfiguration;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint32_t period;
+	bool value_has_to_change;
+} __attribute__((__packed__)) GetMagneticFieldCallbackConfiguration_Response;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint32_t period;
+	bool value_has_to_change;
+} __attribute__((__packed__)) SetAngularVelocityCallbackConfiguration;
+
+typedef struct {
+	TFPMessageHeader header;
+} __attribute__((__packed__)) GetAngularVelocityCallbackConfiguration;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint32_t period;
+	bool value_has_to_change;
+} __attribute__((__packed__)) GetAngularVelocityCallbackConfiguration_Response;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint32_t period;
+	bool value_has_to_change;
+} __attribute__((__packed__)) SetTemperatureCallbackConfiguration;
+
+typedef struct {
+	TFPMessageHeader header;
+} __attribute__((__packed__)) GetTemperatureCallbackConfiguration;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint32_t period;
+	bool value_has_to_change;
+} __attribute__((__packed__)) GetTemperatureCallbackConfiguration_Response;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint32_t period;
+	bool value_has_to_change;
+} __attribute__((__packed__)) SetOrientationCallbackConfiguration;
+
+typedef struct {
+	TFPMessageHeader header;
+} __attribute__((__packed__)) GetOrientationCallbackConfiguration;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint32_t period;
+	bool value_has_to_change;
+} __attribute__((__packed__)) GetOrientationCallbackConfiguration_Response;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint32_t period;
+	bool value_has_to_change;
+} __attribute__((__packed__)) SetLinearAccelerationCallbackConfiguration;
+
+typedef struct {
+	TFPMessageHeader header;
+} __attribute__((__packed__)) GetLinearAccelerationCallbackConfiguration;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint32_t period;
+	bool value_has_to_change;
+} __attribute__((__packed__)) GetLinearAccelerationCallbackConfiguration_Response;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint32_t period;
+	bool value_has_to_change;
+} __attribute__((__packed__)) SetGravityVectorCallbackConfiguration;
+
+typedef struct {
+	TFPMessageHeader header;
+} __attribute__((__packed__)) GetGravityVectorCallbackConfiguration;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint32_t period;
+	bool value_has_to_change;
+} __attribute__((__packed__)) GetGravityVectorCallbackConfiguration_Response;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint32_t period;
+	bool value_has_to_change;
+} __attribute__((__packed__)) SetQuaternionCallbackConfiguration;
+
+typedef struct {
+	TFPMessageHeader header;
+} __attribute__((__packed__)) GetQuaternionCallbackConfiguration;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint32_t period;
+	bool value_has_to_change;
+} __attribute__((__packed__)) GetQuaternionCallbackConfiguration_Response;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint32_t period;
+	bool value_has_to_change;
+} __attribute__((__packed__)) SetAllDataCallbackConfiguration;
+
+typedef struct {
+	TFPMessageHeader header;
+} __attribute__((__packed__)) GetAllDataCallbackConfiguration;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint32_t period;
+	bool value_has_to_change;
+} __attribute__((__packed__)) GetAllDataCallbackConfiguration_Response;
+
+typedef struct {
+	TFPMessageHeader header;
+	int16_t x;
+	int16_t y;
+	int16_t z;
+} __attribute__((__packed__)) Acceleration_Callback;
+
+typedef struct {
+	TFPMessageHeader header;
+	int16_t x;
+	int16_t y;
+	int16_t z;
+} __attribute__((__packed__)) MagneticField_Callback;
+
+typedef struct {
+	TFPMessageHeader header;
+	int16_t x;
+	int16_t y;
+	int16_t z;
+} __attribute__((__packed__)) AngularVelocity_Callback;
+
+typedef struct {
+	TFPMessageHeader header;
+	int8_t temperature;
+} __attribute__((__packed__)) Temperature_Callback;
+
+typedef struct {
+	TFPMessageHeader header;
+	int16_t x;
+	int16_t y;
+	int16_t z;
+} __attribute__((__packed__)) LinearAcceleration_Callback;
+
+typedef struct {
+	TFPMessageHeader header;
+	int16_t x;
+	int16_t y;
+	int16_t z;
+} __attribute__((__packed__)) GravityVector_Callback;
+
+typedef struct {
+	TFPMessageHeader header;
+	int16_t heading;
+	int16_t roll;
+	int16_t pitch;
+} __attribute__((__packed__)) Orientation_Callback;
+
+typedef struct {
+	TFPMessageHeader header;
+	int16_t w;
+	int16_t x;
+	int16_t y;
+	int16_t z;
+} __attribute__((__packed__)) Quaternion_Callback;
+
+typedef struct {
+	TFPMessageHeader header;
+	int16_t acceleration[3];
+	int16_t magnetic_field[3];
+	int16_t angular_velocity[3];
+	int16_t euler_angle[3];
+	int16_t quaternion[4];
+	int16_t linear_acceleration[3];
+	int16_t gravity_vector[3];
+	int8_t temperature;
+	uint8_t calibration_status;
+} __attribute__((__packed__)) AllData_Callback;
+
 
 // Function prototypes
 BootloaderHandleMessageResponse get_acceleration(const GetAcceleration *data, GetAcceleration_Response *response);
@@ -278,13 +517,48 @@ BootloaderHandleMessageResponse set_sensor_configuration(const SetSensorConfigur
 BootloaderHandleMessageResponse get_sensor_configuration(const GetSensorConfiguration *data, GetSensorConfiguration_Response *response);
 BootloaderHandleMessageResponse set_sensor_fusion_mode(const SetSensorFusionMode *data);
 BootloaderHandleMessageResponse get_sensor_fusion_mode(const GetSensorFusionMode *data, GetSensorFusionMode_Response *response);
+BootloaderHandleMessageResponse set_acceleration_callback_configuration(const SetAccelerationCallbackConfiguration *data);
+BootloaderHandleMessageResponse get_acceleration_callback_configuration(const GetAccelerationCallbackConfiguration *data, GetAccelerationCallbackConfiguration_Response *response);
+BootloaderHandleMessageResponse set_magnetic_field_callback_configuration(const SetMagneticFieldCallbackConfiguration *data);
+BootloaderHandleMessageResponse get_magnetic_field_callback_configuration(const GetMagneticFieldCallbackConfiguration *data, GetMagneticFieldCallbackConfiguration_Response *response);
+BootloaderHandleMessageResponse set_angular_velocity_callback_configuration(const SetAngularVelocityCallbackConfiguration *data);
+BootloaderHandleMessageResponse get_angular_velocity_callback_configuration(const GetAngularVelocityCallbackConfiguration *data, GetAngularVelocityCallbackConfiguration_Response *response);
+BootloaderHandleMessageResponse set_temperature_callback_configuration(const SetTemperatureCallbackConfiguration *data);
+BootloaderHandleMessageResponse get_temperature_callback_configuration(const GetTemperatureCallbackConfiguration *data, GetTemperatureCallbackConfiguration_Response *response);
+BootloaderHandleMessageResponse set_orientation_callback_configuration(const SetOrientationCallbackConfiguration *data);
+BootloaderHandleMessageResponse get_orientation_callback_configuration(const GetOrientationCallbackConfiguration *data, GetOrientationCallbackConfiguration_Response *response);
+BootloaderHandleMessageResponse set_linear_acceleration_callback_configuration(const SetLinearAccelerationCallbackConfiguration *data);
+BootloaderHandleMessageResponse get_linear_acceleration_callback_configuration(const GetLinearAccelerationCallbackConfiguration *data, GetLinearAccelerationCallbackConfiguration_Response *response);
+BootloaderHandleMessageResponse set_gravity_vector_callback_configuration(const SetGravityVectorCallbackConfiguration *data);
+BootloaderHandleMessageResponse get_gravity_vector_callback_configuration(const GetGravityVectorCallbackConfiguration *data, GetGravityVectorCallbackConfiguration_Response *response);
+BootloaderHandleMessageResponse set_quaternion_callback_configuration(const SetQuaternionCallbackConfiguration *data);
+BootloaderHandleMessageResponse get_quaternion_callback_configuration(const GetQuaternionCallbackConfiguration *data, GetQuaternionCallbackConfiguration_Response *response);
+BootloaderHandleMessageResponse set_all_data_callback_configuration(const SetAllDataCallbackConfiguration *data);
+BootloaderHandleMessageResponse get_all_data_callback_configuration(const GetAllDataCallbackConfiguration *data, GetAllDataCallbackConfiguration_Response *response);
 
 // Callbacks
-
+bool handle_acceleration_callback(void);
+bool handle_magnetic_field_callback(void);
+bool handle_angular_velocity_callback(void);
+bool handle_temperature_callback(void);
+bool handle_linear_acceleration_callback(void);
+bool handle_gravity_vector_callback(void);
+bool handle_orientation_callback(void);
+bool handle_quaternion_callback(void);
+bool handle_all_data_callback(void);
 
 #define COMMUNICATION_CALLBACK_TICK_WAIT_MS 1
-#define COMMUNICATION_CALLBACK_HANDLER_NUM 0
+#define COMMUNICATION_CALLBACK_HANDLER_NUM 9
 #define COMMUNICATION_CALLBACK_LIST_INIT \
+	handle_acceleration_callback, \
+	handle_magnetic_field_callback, \
+	handle_angular_velocity_callback, \
+	handle_temperature_callback, \
+	handle_linear_acceleration_callback, \
+	handle_gravity_vector_callback, \
+	handle_orientation_callback, \
+	handle_quaternion_callback, \
+	handle_all_data_callback, \
 
 
 #endif
