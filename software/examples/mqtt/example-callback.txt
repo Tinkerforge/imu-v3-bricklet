@@ -1,0 +1,9 @@
+# Change XYZ to the UID of your IMU Bricklet 3.0
+
+setup:
+	# Handle incoming quaternion callbacks
+	subscribe to tinkerforge/callback/imu_v3_bricklet/XYZ/quaternion
+	publish '{"register": true}' to tinkerforge/register/imu_v3_bricklet/XYZ/quaternion # Register quaternion callback
+
+	# Set period for quaternion callback to 0.1s (100ms)
+	publish '{"period": 100, "value_has_to_change": false}' to tinkerforge/request/imu_v3_bricklet/XYZ/set_quaternion_callback_configuration

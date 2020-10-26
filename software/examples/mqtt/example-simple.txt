@@ -1,0 +1,6 @@
+# Change XYZ to the UID of your IMU Bricklet 3.0
+
+setup:
+	# Get current quaternion
+	subscribe to tinkerforge/response/imu_v3_bricklet/XYZ/get_quaternion
+	publish '' to tinkerforge/request/imu_v3_bricklet/XYZ/get_quaternion

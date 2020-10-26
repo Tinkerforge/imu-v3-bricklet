@@ -1,0 +1,41 @@
+Notebook[{
+ Cell[
+  BoxData[{
+   RowBox[{"Needs", "[", "\"\<NETLink`\>\"", "]"}],
+   RowBox[{"LoadNETAssembly", "[", RowBox[{"\"\<Tinkerforge\>\"", ",", RowBox[{RowBox[{"NotebookDirectory", "[", "]"}], "<>", "\"\<../../..\>\""}]}], "]"}]
+  }], "Input"
+ ],
+ Cell[
+  BoxData[{
+   RowBox[{"host", "=", "\"\<localhost\>\""}],
+   RowBox[{"port", "=", "4223"}],
+   RowBox[{"uid", "=", "\"\<XYZ\>\"", RowBox[{"(*", "Change XYZ to the UID of your IMU Bricklet 3.0", "*)"}]}],
+   RowBox[{"
+"}],
+   RowBox[{"(*", "Create IPConnection and device object", "*)"}],
+   RowBox[{"ipcon", "=", RowBox[{"NETNew", "[", "\"\<Tinkerforge.IPConnection\>\"", "]"}]}],
+   RowBox[{"imu", "=", RowBox[{"NETNew", "[", RowBox[{"\"\<Tinkerforge.BrickletIMUV3\>\"", ",", "uid", ",", "ipcon"}], "]"}]}],
+   RowBox[{"ipcon", "@", RowBox[{"Connect", "[", RowBox[{"host", ",", "port"}], "]"}]}],
+   RowBox[{"
+"}],
+   RowBox[{"(*", "Callback function for quaternion callback", "*)"}],
+   RowBox[{RowBox[{"QuaternionCB", "[", RowBox[{"sender_", ",", "w_", ",", "x_", ",", "y_", ",", "z_"}], "]"}], ":=", "\[IndentingNewLine]", RowBox[{"Module", "[", RowBox[{RowBox[{"{", "}"}], ",", RowBox[{"\[IndentingNewLine]", RowBox[{"Print", "[", RowBox[{"\"\<Quaternion [W]: \>\"", "<>", RowBox[{"ToString", "[", RowBox[{"N", "[", RowBox[{"w", "/", "16383.0"}], "]"}], "]"}]}], "]"}], ";", "\[IndentingNewLine]", RowBox[{"Print", "[", RowBox[{"\"\<Quaternion [X]: \>\"", "<>", RowBox[{"ToString", "[", RowBox[{"N", "[", RowBox[{"x", "/", "16383.0"}], "]"}], "]"}]}], "]"}], ";", "\[IndentingNewLine]", RowBox[{"Print", "[", RowBox[{"\"\<Quaternion [Y]: \>\"", "<>", RowBox[{"ToString", "[", RowBox[{"N", "[", RowBox[{"y", "/", "16383.0"}], "]"}], "]"}]}], "]"}], ";", "\[IndentingNewLine]", RowBox[{"Print", "[", RowBox[{"\"\<Quaternion [Z]: \>\"", "<>", RowBox[{"ToString", "[", RowBox[{"N", "[", RowBox[{"z", "/", "16383.0"}], "]"}], "]"}]}], "]"}], "\[IndentingNewLine]"}]}], "]"}]}],
+   RowBox[{"
+"}],
+   RowBox[{"AddEventHandler", "[", RowBox[{RowBox[{"imu", "@", "QuaternionCallback"}], ",", "QuaternionCB"}], "]"}],
+   RowBox[{"
+"}],
+   RowBox[{"(*", "Set period for quaternion callback to 0.1s (100ms)", "*)"}],
+   RowBox[{"imu", "@", RowBox[{"SetQuaternionCallbackConfiguration", "[", RowBox[{"100", ",", "False"}], "]"}]}],
+   RowBox[{"
+"}],
+   RowBox[{"Input", "[", "\"\<Click OK to exit\>\"", "]"}],
+   RowBox[{"
+"}],
+   RowBox[{"(*", "Clean up", "*)"}],
+   RowBox[{"ipcon", "@", RowBox[{"Disconnect", "[", "]"}]}],
+   RowBox[{"ReleaseNETObject", "[", "imu", "]"}],
+   RowBox[{"ReleaseNETObject", "[", "ipcon", "]"}]
+  }], "Input"
+ ]
+}]

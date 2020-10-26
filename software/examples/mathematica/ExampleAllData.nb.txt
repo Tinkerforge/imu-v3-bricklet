@@ -1,0 +1,59 @@
+Needs["NETLink`"]
+LoadNETAssembly["Tinkerforge",NotebookDirectory[]<>"../../.."]
+
+host="localhost"
+port=4223
+uid="XYZ"(*Change XYZ to the UID of your IMU Bricklet 3.0*)
+
+(*Create IPConnection and device object*)
+ipcon=NETNew["Tinkerforge.IPConnection"]
+imu=NETNew["Tinkerforge.BrickletIMUV3",uid,ipcon]
+ipcon@Connect[host,port]
+
+(*Callback function for all data callback*)
+AllDataCB[sender_,{acceleration1_,acceleration2_,acceleration3_},
+          {magneticField1_,magneticField2_,magneticField3_},
+          {angularVelocity1_,angularVelocity2_,angularVelocity3_},
+          {eulerAngle1_,eulerAngle2_,eulerAngle3_},
+          {quaternion1_,quaternion2_,quaternion3_,quaternion4_},
+          {linearAcceleration1_,linearAcceleration2_,linearAcceleration3_},
+          {gravityVector1_,gravityVector2_,gravityVector3_},temperature_,
+          calibrationStatus_]:=
+ Module[{},
+  Print["Acceleration [X]: "<>ToString[N[Quantity[acceleration1,"m/s²/100"]]]];
+  Print["Acceleration [Y]: "<>ToString[N[Quantity[acceleration2,"m/s²/100"]]]];
+  Print["Acceleration [Z]: "<>ToString[N[Quantity[acceleration3,"m/s²/100"]]]];
+  Print["Magnetic Field [X]: "<>ToString[N[Quantity[magneticField1,"µT/16"]]]];
+  Print["Magnetic Field [Y]: "<>ToString[N[Quantity[magneticField2,"µT/16"]]]];
+  Print["Magnetic Field [Z]: "<>ToString[N[Quantity[magneticField3,"µT/16"]]]];
+  Print["Angular Velocity [X]: "<>ToString[N[Quantity[angularVelocity1,"°/s/16"]]]];
+  Print["Angular Velocity [Y]: "<>ToString[N[Quantity[angularVelocity2,"°/s/16"]]]];
+  Print["Angular Velocity [Z]: "<>ToString[N[Quantity[angularVelocity3,"°/s/16"]]]];
+  Print["Euler Angle [Heading]: "<>ToString[N[Quantity[eulerAngle1,"°/16"]]]];
+  Print["Euler Angle [Roll]: "<>ToString[N[Quantity[eulerAngle2,"°/16"]]]];
+  Print["Euler Angle [Pitch]: "<>ToString[N[Quantity[eulerAngle3,"°/16"]]]];
+  Print["Quaternion [W]: "<>ToString[N[quaternion1/16383.0]]];
+  Print["Quaternion [X]: "<>ToString[N[quaternion2/16383.0]]];
+  Print["Quaternion [Y]: "<>ToString[N[quaternion3/16383.0]]];
+  Print["Quaternion [Z]: "<>ToString[N[quaternion4/16383.0]]];
+  Print["Linear Acceleration [X]: "<>ToString[N[Quantity[linearAcceleration1,"m/s²/100"]]]];
+  Print["Linear Acceleration [Y]: "<>ToString[N[Quantity[linearAcceleration2,"m/s²/100"]]]];
+  Print["Linear Acceleration [Z]: "<>ToString[N[Quantity[linearAcceleration3,"m/s²/100"]]]];
+  Print["Gravity Vector [X]: "<>ToString[N[Quantity[gravityVector1,"m/s²/100"]]]];
+  Print["Gravity Vector [Y]: "<>ToString[N[Quantity[gravityVector2,"m/s²/100"]]]];
+  Print["Gravity Vector [Z]: "<>ToString[N[Quantity[gravityVector3,"m/s²/100"]]]];
+  Print["Temperature: "<>ToString[N[Quantity[temperature,"°C"]]]];
+  Print["Calibration Status: "<>StringJoin[Map[ToString,IntegerDigits[calibrationStatus,2,8]]]]
+ ]
+
+AddEventHandler[imu@AllDataCallback,AllDataCB]
+
+(*Set period for all data callback to 0.1s (100ms)*)
+imu@SetAllDataCallbackConfiguration[100,False]
+
+Input["Click OK to exit"]
+
+(*Clean up*)
+ipcon@Disconnect[]
+ReleaseNETObject[imu]
+ReleaseNETObject[ipcon]

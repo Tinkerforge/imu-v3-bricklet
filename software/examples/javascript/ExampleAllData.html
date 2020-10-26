@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <head>
+        <title>Tinkerforge | JavaScript Example</title>
+    </head>
+    <body>
+        <div style="text-align:center;">
+            <h1>IMU Bricklet 3.0 All Data Example</h1>
+            <p>
+                <input value="localhost" id="host" type="text" size="20">:
+                <input value="4280" id="port" type="text" size="5">,
+                <input value="uid" id="uid" type="text" size="5">
+                <input value="Start Example" id="start" type="button" onclick="startExample();">
+            </p>
+            <p>
+                <textarea readonly id="text" cols="80" rows="24" style="resize:none;"
+                          >Press "Start Example" to begin ...</textarea>
+            </p>
+        </div>
+        <script src="./Tinkerforge.js" type='text/javascript'></script>
+        <script type='text/javascript'>
+            var ipcon;
+            var textArea = document.getElementById("text");
+            function startExample() {
+                textArea.value = "";
+                var HOST = document.getElementById("host").value;
+                var PORT = parseInt(document.getElementById("port").value);
+                var UID = document.getElementById("uid").value;
+                if(ipcon !== undefined) {
+                    ipcon.disconnect();
+                }
+                ipcon = new Tinkerforge.IPConnection(); // Create IP connection
+                var imu = new Tinkerforge.BrickletIMUV3(UID, ipcon); // Create device object
+                ipcon.connect(HOST, PORT,
+                    function(error) {
+                        textArea.value += 'Error: ' + error + '\n';
+                    }
+                ); // Connect to brickd
+                // Don't use device before ipcon is connected
+
+                ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
+                    function (connectReason) {
+                        // Set period for all data callback to 0.1s (100ms)
+                        imu.setAllDataCallbackConfiguration(100, false);
+                    }
+                );
+
+                // Register all data callback
+                imu.on(Tinkerforge.BrickletIMUV3.CALLBACK_ALL_DATA,
+                    // Callback function for all data callback
+                    function (acceleration, magneticField, angularVelocity, eulerAngle, quaternion,
+                              linearAcceleration, gravityVector, temperature, calibrationStatus) {
+                        textArea.value += 'Acceleration [X]: ' + acceleration[0]/100.0 + ' m/s²\n';
+                        textArea.value += 'Acceleration [Y]: ' + acceleration[1]/100.0 + ' m/s²\n';
+                        textArea.value += 'Acceleration [Z]: ' + acceleration[2]/100.0 + ' m/s²\n';
+                        textArea.value += 'Magnetic Field [X]: ' + magneticField[0]/16.0 + ' µT\n';
+                        textArea.value += 'Magnetic Field [Y]: ' + magneticField[1]/16.0 + ' µT\n';
+                        textArea.value += 'Magnetic Field [Z]: ' + magneticField[2]/16.0 + ' µT\n';
+                        textArea.value += 'Angular Velocity [X]: ' + angularVelocity[0]/16.0 + ' °/s\n';
+                        textArea.value += 'Angular Velocity [Y]: ' + angularVelocity[1]/16.0 + ' °/s\n';
+                        textArea.value += 'Angular Velocity [Z]: ' + angularVelocity[2]/16.0 + ' °/s\n';
+                        textArea.value += 'Euler Angle [Heading]: ' + eulerAngle[0]/16.0 + ' °\n';
+                        textArea.value += 'Euler Angle [Roll]: ' + eulerAngle[1]/16.0 + ' °\n';
+                        textArea.value += 'Euler Angle [Pitch]: ' + eulerAngle[2]/16.0 + ' °\n';
+                        textArea.value += 'Quaternion [W]: ' + quaternion[0]/16383.0 + '\n';
+                        textArea.value += 'Quaternion [X]: ' + quaternion[1]/16383.0 + '\n';
+                        textArea.value += 'Quaternion [Y]: ' + quaternion[2]/16383.0 + '\n';
+                        textArea.value += 'Quaternion [Z]: ' + quaternion[3]/16383.0 + '\n';
+                        textArea.value += 'Linear Acceleration [X]: ' + linearAcceleration[0]/100.0 + ' m/s²\n';
+                        textArea.value += 'Linear Acceleration [Y]: ' + linearAcceleration[1]/100.0 + ' m/s²\n';
+                        textArea.value += 'Linear Acceleration [Z]: ' + linearAcceleration[2]/100.0 + ' m/s²\n';
+                        textArea.value += 'Gravity Vector [X]: ' + gravityVector[0]/100.0 + ' m/s²\n';
+                        textArea.value += 'Gravity Vector [Y]: ' + gravityVector[1]/100.0 + ' m/s²\n';
+                        textArea.value += 'Gravity Vector [Z]: ' + gravityVector[2]/100.0 + ' m/s²\n';
+                        textArea.value += 'Temperature: ' + temperature + ' °C\n';
+                        textArea.value += 'Calibration Status: ' + calibrationStatus.toString(2) + '\n';
+                        textArea.value += '\n';
+                        textArea.scrollTop = textArea.scrollHeight;
+                    }
+                );
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+Needs["NETLink`"]
+LoadNETAssembly["Tinkerforge",NotebookDirectory[]<>"../../.."]
+
+host="localhost"
+port=4223
+uid="XYZ"(*Change XYZ to the UID of your IMU Bricklet 3.0*)
+
+(*Create IPConnection and device object*)
+ipcon=NETNew["Tinkerforge.IPConnection"]
+imu=NETNew["Tinkerforge.BrickletIMUV3",uid,ipcon]
+ipcon@Connect[host,port]
+
+(*Get current quaternion*)
+w=0;x=0;y=0;z=0
+imu@GetQuaternion[w,x,y,z]
+
+Print["Quaternion [W]: "<>ToString[N[w/16383.0]]]
+Print["Quaternion [X]: "<>ToString[N[x/16383.0]]]
+Print["Quaternion [Y]: "<>ToString[N[y/16383.0]]]
+Print["Quaternion [Z]: "<>ToString[N[z/16383.0]]]
+
+(*Clean up*)
+ipcon@Disconnect[]
+ReleaseNETObject[imu]
+ReleaseNETObject[ipcon]

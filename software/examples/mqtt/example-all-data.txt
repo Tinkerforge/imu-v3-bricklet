@@ -1,0 +1,9 @@
+# Change XYZ to the UID of your IMU Bricklet 3.0
+
+setup:
+	# Handle incoming all data callbacks
+	subscribe to tinkerforge/callback/imu_v3_bricklet/XYZ/all_data
+	publish '{"register": true}' to tinkerforge/register/imu_v3_bricklet/XYZ/all_data # Register all_data callback
+
+	# Set period for all data callback to 0.1s (100ms)
+	publish '{"period": 100, "value_has_to_change": false}' to tinkerforge/request/imu_v3_bricklet/XYZ/set_all_data_callback_configuration
