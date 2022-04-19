@@ -9,8 +9,8 @@
 
 void check(int rc, const char* msg);
 
-void example_setup(TF_HalContext *hal);
-void example_loop(TF_HalContext *hal);
+void example_setup(TF_HAL *hal);
+void example_loop(TF_HAL *hal);
 
 
 // Callback function for all data callback
@@ -51,7 +51,7 @@ static void all_data_handler(TF_IMUV3 *device, int16_t acceleration[3],
 
 static TF_IMUV3 imu;
 
-void example_setup(TF_HalContext *hal) {
+void example_setup(TF_HAL *hal) {
 	// Create device object
 	check(tf_imu_v3_create(&imu, UID, hal), "create device object");
 
@@ -64,7 +64,7 @@ void example_setup(TF_HalContext *hal) {
 	tf_imu_v3_set_all_data_callback_configuration(&imu, 100, false);
 }
 
-void example_loop(TF_HalContext *hal) {
+void example_loop(TF_HAL *hal) {
 	// Poll for callbacks
 	tf_hal_callback_tick(hal, 0);
 }
