@@ -1,17 +1,13 @@
 // This example is not self-contained.
-// It requres usage of the example driver specific to your platform.
+// It requires usage of the example driver specific to your platform.
 // See the HAL documentation.
 
-#include "bindings/hal_common.h"
-#include "bindings/bricklet_imu_v3.h"
+#include "src/bindings/hal_common.h"
+#include "src/bindings/bricklet_imu_v3.h"
 
-#define UID "XYZ" // Change XYZ to the UID of your IMU Bricklet 3.0
-
-void check(int rc, const char* msg);
-
+void check(int rc, const char *msg);
 void example_setup(TF_HAL *hal);
 void example_loop(TF_HAL *hal);
-
 
 // Callback function for quaternion callback
 static void quaternion_handler(TF_IMUV3 *device, int16_t w, int16_t x, int16_t y,
@@ -29,7 +25,7 @@ static TF_IMUV3 imu;
 
 void example_setup(TF_HAL *hal) {
 	// Create device object
-	check(tf_imu_v3_create(&imu, UID, hal), "create device object");
+	check(tf_imu_v3_create(&imu, NULL, hal), "create device object");
 
 	// Register quaternion callback to function quaternion_handler
 	tf_imu_v3_register_quaternion_callback(&imu,
