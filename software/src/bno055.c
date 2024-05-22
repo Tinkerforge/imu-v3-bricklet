@@ -73,7 +73,7 @@ void bno055_task_read_register(const uint8_t reg, uint8_t *data, const uint8_t l
 // change the fusion mode. There is no error (NAK during I2C communication or similar).
 // Because of this we check everytime after we write a register and just try again if it does't match.
 void bno055_task_write_register_with_check(const uint8_t reg, const uint8_t *data, const uint8_t length, const uint32_t sleep) {
-	while(true) {
+	for(uint8_t i = 0; i < 5; i++) { // Try for a maximum of 5 times
 		coop_task_sleep_ms(2);
 		uint8_t data_check[32] = {0xFF, 0xFF, 0xFF, 0xFF};
 		uint32_t ret = i2c_fifo_coop_write_register(&bno055.i2c_fifo, reg, length, data, true);
@@ -206,7 +206,7 @@ void bno055_task_update_sensor_fusion_mode(const bool already_in_config_mode) {
 			bno055.sensor_data.grv_y              = 0;
 			bno055.sensor_data.grv_z              = 0;
 			bno055.sensor_data.calibration_status = 0;
-			
+
 			opr_mode = 0b0111;
 			break;
 		}
