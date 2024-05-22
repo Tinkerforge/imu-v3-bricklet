@@ -1,5 +1,5 @@
 2020-10-21: 2.0.0 (5c42bc5)
 - Initial version
 
-2024-05-22: 2.0.1 (TBD)
+2024-05-22: 2.0.1 (a430b61)
 - In case of error during configuration, only try up to 5 times (so we never can end up in an unnecessary endless loop)
